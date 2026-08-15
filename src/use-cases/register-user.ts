@@ -1,6 +1,6 @@
 import type { JWTTokenService } from "../cryptography/jwt-token-service.js";
 import type { PasswordHasher } from "../cryptography/password-hasher.js";
-import type { RefeshTokenService } from "../cryptography/refesh-token-service.js";
+import type { RefreshTokenService } from "../cryptography/refresh-token-service.js";
 import type { SessionRepository } from "../repositories/session-repository.js";
 import type { UserRepository } from "../repositories/user.repository.js";
 
@@ -15,7 +15,7 @@ export class RegisterUser {
         private userRepository: UserRepository, 
         private passwordHasher: PasswordHasher, 
         private tokenService: JWTTokenService,
-        private refeshTokenService: RefeshTokenService,
+        private refreshTokenService: RefreshTokenService,
         private sessionRepository: SessionRepository
     ) {}
 
@@ -43,18 +43,18 @@ export class RegisterUser {
         })
 
         const accessToken = await this.tokenService.generate({ userid: user.id, username: user.username })
-        const refeshToken = this.refeshTokenService.generate()
-        const refeshTokenHash = await this.refeshTokenService.hash(refeshToken)
+        const refreshToken = this.refreshTokenService.generate()
+        const refreshTokenHash = await this.refreshTokenService.hash(refreshToken)
 
         await this.sessionRepository.create({
             userid: user.id,
-            refeshTokenHash: refeshTokenHash,
+            refreshTokenHash: refreshTokenHash,
             expiresAt: new Date(Date.now() + 30 * 24 * 60 * 1000)
         })
 
         return {
             accessToken,
-            refeshToken,
+            refreshToken,
             user: {
                 id: user.id,
                 username: user.username,

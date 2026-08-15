@@ -1,23 +1,23 @@
 import type { Request, Response } from "express";
 import { Logout } from "../../use-cases/logout-user.js";
 import { PrismaSessionRepository } from "../../repositories/prisma-session-repository.js";
-import { CryptoRefeshTokenService } from "../../cryptography/crypto-refresh-token-service.js";
+import { CryptoRefreshTokenService } from "../../cryptography/crypto-refresh-token-service.js";
 
 export async function LogoutController (req: Request, res: Response) {
 
     const sessionRep = new PrismaSessionRepository()
-    const refeshToken = new CryptoRefeshTokenService()
-    const logout = new Logout(sessionRep, refeshToken)
+    const refreshToken = new CryptoRefreshTokenService()
+    const logout = new Logout(sessionRep, refreshToken)
 
-    const refeshtoken = req.cookies.refesh_token
+    const refreshtoken = req.cookies.refresh_token
 
     try {
-        if (refeshtoken)
-            await logout.execute(refeshtoken)
+        if (refreshtoken)
+            await logout.execute(refreshtoken)
 
         res.clearCookie("access_token")
-        res.clearCookie("refesh_token", {
-            path: "/auth"
+        res.clearCookie("refresh_token", {
+            path: "/api/v1/auth"
         })
 
         return res.status(204).send()

@@ -1,7 +1,7 @@
 import crypto from 'node:crypto'
-import type { RefeshTokenService } from './refesh-token-service.js'
+import type { RefreshTokenService } from './refresh-token-service.js'
 
-export class CryptoRefeshTokenService implements RefeshTokenService {
+export class CryptoRefreshTokenService implements RefreshTokenService {
     generate(): string {
         return crypto.randomBytes(64).toString("hex")
 

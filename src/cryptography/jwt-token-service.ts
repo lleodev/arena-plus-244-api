@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 import type { TokenService } from "./token-service.js";
-
+import "dotenv/config"
 
 const secret = new TextEncoder().encode(
     process.env.JWT_SECRET!

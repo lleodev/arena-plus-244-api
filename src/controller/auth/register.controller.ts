@@ -4,7 +4,7 @@ import { PrismaUserRepository } from '../../repositories/prisma-user.repository.
 import { Argon2PasswordHasher } from '../../cryptography/argon2-password-hasher.js'
 import { RegisterUser } from '../../use-cases/register-user.js'
 import { JWTTokenService } from '../../cryptography/jwt-token-service.js'
-import { CryptoRefeshTokenService } from '../../cryptography/crypto-refresh-token-service.js'
+import { CryptoRefreshTokenService } from '../../cryptography/crypto-refresh-token-service.js'
 import { PrismaSessionRepository } from '../../repositories/prisma-session-repository.js'
 
 export async function ReisterController(req: Request, res: Response) {
@@ -14,10 +14,10 @@ export async function ReisterController(req: Request, res: Response) {
         const prismaRepo = new PrismaUserRepository()
         const passwHasher = new Argon2PasswordHasher()
         const tokenserv = new JWTTokenService()
-        const refeshToken = new CryptoRefeshTokenService()
+        const refreshToken = new CryptoRefreshTokenService()
         const sessionRepo = new PrismaSessionRepository()
     
-        const register = new RegisterUser(prismaRepo, passwHasher, tokenserv, refeshToken, sessionRepo)
+        const register = new RegisterUser(prismaRepo, passwHasher, tokenserv, refreshToken, sessionRepo)
     
         const user = await register.execute({
             username,
@@ -33,12 +33,12 @@ export async function ReisterController(req: Request, res: Response) {
             path: "/"
         })
 
-        res.cookie("refesh_token", user.refeshToken, {
+        res.cookie("refresh_token", user.refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
             maxAge: 30 * 24 * 60 * 60 * 1000,
-            path: "/auth"
+            path: "/api/v1/auth"
         })
     
         return res.status(200).json(user.user)

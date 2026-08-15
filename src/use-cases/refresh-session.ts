@@ -1,21 +1,21 @@
 import type { JWTTokenService } from "../cryptography/jwt-token-service.js"
-import type { CryptoRefeshTokenService } from "../cryptography/crypto-refresh-token-service.js"
+import type { CryptoRefreshTokenService } from "../cryptography/crypto-refresh-token-service.js"
 import type { SessionRepository } from "../repositories/session-repository.js"
 import type { UserRepository } from "../repositories/user.repository.js"
 
-export class RefeshSession {
+export class RefreshSession {
     constructor (
         private sessionRepository: SessionRepository,
-        private refeshTokenService: CryptoRefeshTokenService,
+        private refreshTokenService: CryptoRefreshTokenService,
         private tokenService: JWTTokenService,
         private userRepository: UserRepository
     ) {}
 
-    async execute(refeshToken: string) {
+    async execute(refreshToken: string) {
 
-        const refeshTokenHash = await this.refeshTokenService.hash(refeshToken)
+        const refreshTokenHash = await this.refreshTokenService.hash(refreshToken)
 
-        const session = await this.sessionRepository.findByTokenHash(refeshTokenHash)
+        const session = await this.sessionRepository.findByTokenHash(refreshTokenHash)
 
         if (!session)
             throw new Error("Sessão inválida")

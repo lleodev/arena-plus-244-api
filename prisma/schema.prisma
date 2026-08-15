@@ -21,17 +21,33 @@ model User {
   updatedAt DateTime @updatedAt
 
   sessions  Session[]
+  room      Room[]
 }
 
 model Session {
-  id              String    @id @default(cuid())
-  userid          String
-  refeshTokenHash String    @unique
-  expiresAt       DateTime
-  createdAt       DateTime  @default(now())
-  revokedAt       DateTime?
+  id                String    @id @default(cuid())
+  userid            String
+  refreshTokenHash  String    @unique
+  expiresAt         DateTime
+  createdAt         DateTime  @default(now())
+  revokedAt         DateTime?
 
   user  User  @relation(fields: [userid], references: [id], onDelete: Cascade)
 
   @@index([userid])  
+}
+
+model Room {
+  id              String    @id @default(cuid())
+  roomName        String    @unique
+  title           String
+  desc            String
+  status          String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  userid          String
+
+  owner           User  @relation(fields: [userid], references: [id], onDelete: Cascade)
+  
+  @@index([userid])
 }

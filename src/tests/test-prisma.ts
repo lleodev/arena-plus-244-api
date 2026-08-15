@@ -1,6 +1,6 @@
 import { prisma } from "../config/database.js"
 import { Argon2PasswordHasher } from "../cryptography/argon2-password-hasher.js"
-import { CryptoRefeshTokenService } from "../cryptography/crypto-refresh-token-service.js"
+import { CryptorefreshTokenService } from "../cryptography/crypto-refresh-token-service.js"
 import { JWTTokenService } from "../cryptography/jwt-token-service.js"
 import { PrismaSessionRepository } from "../repositories/prisma-session-repository.js"
 import { PrismaUserRepository } from "../repositories/prisma-user.repository.js"
@@ -17,10 +17,10 @@ export async function create() {
     const repository = new PrismaUserRepository()
     const passwordHasher = new Argon2PasswordHasher()
     const tokenseerv = new JWTTokenService()
-    const refeshtokenserv = new CryptoRefeshTokenService()
+    const refreshtokenserv = new CryptorefreshTokenService()
     const sessionrepo = new PrismaSessionRepository()
 
-    const registerUserCase = new RegisterUser(repository, passwordHasher, tokenseerv, refeshtokenserv, sessionrepo)
+    const registerUserCase = new RegisterUser(repository, passwordHasher, tokenseerv, refreshtokenserv, sessionrepo)
 
     const registerSessioncase = new PrismaSessionRepository()
 
@@ -31,7 +31,7 @@ export async function create() {
     
     const session = await registerSessioncase.create({ 
         userid: user.id, 
-        refeshTokenHash: "hash-test-123",
+        refreshTokenHash: "hash-test-123",
         expiresAt: new Date(Date.now() + 1000 * 60 * 60)
      })
 

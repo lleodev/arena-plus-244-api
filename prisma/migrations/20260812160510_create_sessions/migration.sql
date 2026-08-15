@@ -2,7 +2,7 @@
 CREATE TABLE "Session" (
     "id" TEXT NOT NULL,
     "userid" TEXT NOT NULL,
-    "refeshTokenHash" TEXT NOT NULL,
+    "refreshTokenHash" TEXT NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
     "createdat" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "revokedAt" TIMESTAMP(3),
@@ -11,7 +11,7 @@ CREATE TABLE "Session" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Session_refeshTokenHash_key" ON "Session"("refeshTokenHash");
+CREATE UNIQUE INDEX "Session_refreshTokenHash_key" ON "Session"("refreshTokenHash");
 
 -- CreateIndex
 CREATE INDEX "Session_userid_idx" ON "Session"("userid");

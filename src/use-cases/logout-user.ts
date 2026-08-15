@@ -1,4 +1,4 @@
-import type { RefeshTokenService } from "../cryptography/refesh-token-service.js";
+import type { RefreshTokenService } from "../cryptography/refresh-token-service.js";
 import type { SessionRepository } from "../repositories/session-repository.js";
 
 
@@ -6,11 +6,11 @@ export class Logout {
     
     constructor(
         private sessionRepository: SessionRepository,
-        private refeshTokenService: RefeshTokenService
+        private refreshTokenService: RefreshTokenService
     ) {}
 
-    async execute(refeshToken: string) {
-        const hash = await this.refeshTokenService.hash(refeshToken)
+    async execute(refreshToken: string) {
+        const hash = await this.refreshTokenService.hash(refreshToken)
 
         const session = await this.sessionRepository.findByTokenHash(hash)
 

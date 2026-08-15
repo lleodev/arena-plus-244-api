@@ -5,14 +5,14 @@ import { prisma } from "../config/database.js"
 
 export class PrismaSessionRepository implements SessionRepository {
 
-    async create(data: { userid: string; refeshTokenHash: string; expiresAt: Date; }): Promise<Session> {
+    async create(data: { userid: string; refreshTokenHash: string; expiresAt: Date; }): Promise<Session> {
         return prisma.session.create({ data })
     }
     
-    async findByTokenHash(refeshTokenHash: string): Promise<Session | null> {
+    async findByTokenHash(refreshTokenHash: string): Promise<Session | null> {
         return prisma.session.findUnique({ 
             where: {
-                refeshTokenHash
+                refreshTokenHash,
             }
          })
     }

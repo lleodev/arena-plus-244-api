@@ -1,26 +1,26 @@
 import type { Request, Response } from "express";
-import { RefeshSession } from "../../use-cases/refresh-session.js";
-import { CryptoRefeshTokenService } from "../../cryptography/crypto-refresh-token-service.js";
+import { RefreshSession } from "../../use-cases/refresh-session.js";
+import { CryptoRefreshTokenService } from "../../cryptography/crypto-refresh-token-service.js";
 import { PrismaSessionRepository } from "../../repositories/prisma-session-repository.js";
 import { JWTTokenService } from "../../cryptography/jwt-token-service.js";
 import { PrismaUserRepository } from "../../repositories/prisma-user.repository.js";
 
-export async function handler(req: Request, res: Response)
+export async function RefreshSessionController(req: Request, res: Response)
 {
     const sessionRepo = new PrismaSessionRepository()
-    const refeshTokenserv = new CryptoRefeshTokenService()
+    const refreshTokenserv = new CryptoRefreshTokenService()
     const tokenserv = new JWTTokenService()
     const userRepo = new PrismaUserRepository()
-    const refeshSession = new RefeshSession(sessionRepo, refeshTokenserv, tokenserv, userRepo)
+    const refreshSession = new RefreshSession(sessionRepo, refreshTokenserv, tokenserv, userRepo)
 
-    const refeshToken = req.cookies.refesh_token
+    const refreshToken = req.cookies.refresh_token
 
-    if (!refeshToken) {
-        return res.status(401).json({ message: "Refesh token não encontrado" })
+    if (!refreshToken) {
+        return res.status(401).json({ message: "refresh token não encontrado" })
     }
 
     try {
-        const accessToken = await refeshSession.execute(refeshToken)
+        const accessToken = await refreshSession.execute(refreshToken)
 
         res.cookie("access_token", accessToken, {
             httpOnly: true,

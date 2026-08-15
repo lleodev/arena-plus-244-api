@@ -1,8 +1,8 @@
-import { CryptoRefeshTokenService } from "../cryptography/crypto-refresh-token-service.js"
+import { CryptorefreshTokenService } from "../cryptography/crypto-refresh-token-service.js"
 
 (async () => {
 
-    const service = new CryptoRefeshTokenService()
+    const service = new CryptorefreshTokenService()
 
     const token = service.generate()
 
