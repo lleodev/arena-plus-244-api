@@ -28,7 +28,7 @@ export async function ReisterController(req: Request, res: Response) {
         res.cookie("access_token", user.accessToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/"
         })
@@ -36,7 +36,7 @@ export async function ReisterController(req: Request, res: Response) {
         res.cookie("refresh_token", user.refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/api/v1/auth"
         })

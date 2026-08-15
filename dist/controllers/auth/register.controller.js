@@ -21,14 +21,14 @@ export async function ReisterController(req, res) {
         res.cookie("access_token", user.accessToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/"
         });
         res.cookie("refresh_token", user.refreshToken, {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/api/v1/auth"
         });
