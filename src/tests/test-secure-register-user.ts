@@ -1,5 +1,5 @@
 import { Argon2PasswordHasher } from "../cryptography/argon2-password-hasher.js"
-import { CryptorefreshTokenService } from "../cryptography/crypto-refresh-token-service.js"
+import { CryptoRefreshTokenService } from "../cryptography/crypto-refresh-token-service.js"
 import { JWTTokenService } from "../cryptography/jwt-token-service.js"
 import { PrismaSessionRepository } from "../repositories/prisma-session-repository.js"
 import { PrismaUserRepository } from "../repositories/prisma-user.repository.js"
@@ -16,7 +16,7 @@ import { RegisterUser } from "../use-cases/register-user.js"
     const repository = new PrismaUserRepository()
     const passwordHasher = new Argon2PasswordHasher()
     const tokenseerv = new JWTTokenService()
-    const refreshtokenserv = new CryptorefreshTokenService()
+    const refreshtokenserv = new CryptoRefreshTokenService()
     const sessionrepo = new PrismaSessionRepository()
 
     const registerUserCase = new RegisterUser(repository, passwordHasher, tokenseerv, refreshtokenserv, sessionrepo)

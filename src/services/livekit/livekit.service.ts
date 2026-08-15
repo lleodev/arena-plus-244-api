@@ -37,10 +37,6 @@ export class LivekitService implements StreamRepository {
         })
     }
 
-    closeStreamRoom(roomname: string): Promise<void> {
-        
-    }
-
     async findByRoomName(roomname: string): Promise<StreamRoom | null> {
         return await (
             prisma.room.findUnique({
