@@ -27,16 +27,16 @@ export async function LoginController(req: Request, res: Response)
         
         res.cookie("access_token", user.access_token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: process.env.SECURE_COOCKIE === "production",
+            sameSite: (process.env.SAME_ORIGIN as boolean | "lax" | "strict" | "none" | undefined),
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/"
         })
 
         res.cookie("refresh_token", user.refresh_token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: process.env.SECURE_COOCKIE === "production",
+            sameSite: (process.env.SAME_ORIGIN as boolean | "lax" | "strict" | "none" | undefined),
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/api/v1/auth"
         })
