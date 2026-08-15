@@ -17,7 +17,7 @@ export async function RefreshSessionController(req, res) {
         const accessToken = await refreshSession.execute(refreshToken);
         res.cookie("access_token", accessToken, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
             sameSite: "lax",
             maxAge: 30 * 24 * 60 * 60 * 1000
         });

@@ -193,9 +193,9 @@ type _Record<K extends keyof any, T> = {
 type NoExpand<T> = T extends unknown ? T : never;
 export type AtLeast<O extends object, K extends string> = NoExpand<O extends unknown ? (K extends keyof O ? {
     [P in K]: O[P];
-} & O : O) | ({
+} & O : O) | {
     [P in keyof O as P extends K ? P : never]-?: O[P];
-} & O) : never>;
+} & O : never>;
 type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
 export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
 /** End Helper Types for "Merge" **/
@@ -244,9 +244,9 @@ export type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? n
 export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>;
 export declare const ModelName: {
-    readonly User: 'User';
-    readonly Session: 'Session';
-    readonly Room: 'Room';
+    readonly User: "User";
+    readonly Session: "Session";
+    readonly Room: "Room";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -513,54 +513,54 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
  * Enums
  */
 export declare const TransactionIsolationLevel: {
-    readonly ReadUncommitted: 'ReadUncommitted';
-    readonly ReadCommitted: 'ReadCommitted';
-    readonly RepeatableRead: 'RepeatableRead';
-    readonly Serializable: 'Serializable';
+    readonly ReadUncommitted: "ReadUncommitted";
+    readonly ReadCommitted: "ReadCommitted";
+    readonly RepeatableRead: "RepeatableRead";
+    readonly Serializable: "Serializable";
 };
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 export declare const UserScalarFieldEnum: {
-    readonly id: 'id';
-    readonly username: 'username';
-    readonly email: 'email';
-    readonly password: 'password';
-    readonly createdAt: 'createdAt';
-    readonly updatedAt: 'updatedAt';
+    readonly id: "id";
+    readonly username: "username";
+    readonly email: "email";
+    readonly password: "password";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
 };
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
 export declare const SessionScalarFieldEnum: {
-    readonly id: 'id';
-    readonly userid: 'userid';
-    readonly refreshTokenHash: 'refreshTokenHash';
-    readonly expiresAt: 'expiresAt';
-    readonly createdAt: 'createdAt';
-    readonly revokedAt: 'revokedAt';
+    readonly id: "id";
+    readonly userid: "userid";
+    readonly refreshTokenHash: "refreshTokenHash";
+    readonly expiresAt: "expiresAt";
+    readonly createdAt: "createdAt";
+    readonly revokedAt: "revokedAt";
 };
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum];
 export declare const RoomScalarFieldEnum: {
-    readonly id: 'id';
-    readonly roomName: 'roomName';
-    readonly title: 'title';
-    readonly desc: 'desc';
-    readonly status: 'status';
-    readonly createdAt: 'createdAt';
-    readonly updatedAt: 'updatedAt';
-    readonly userid: 'userid';
+    readonly id: "id";
+    readonly roomName: "roomName";
+    readonly title: "title";
+    readonly desc: "desc";
+    readonly status: "status";
+    readonly createdAt: "createdAt";
+    readonly updatedAt: "updatedAt";
+    readonly userid: "userid";
 };
 export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum];
 export declare const SortOrder: {
-    readonly asc: 'asc';
-    readonly desc: 'desc';
+    readonly asc: "asc";
+    readonly desc: "desc";
 };
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
 export declare const QueryMode: {
-    readonly default: 'default';
-    readonly insensitive: 'insensitive';
+    readonly default: "default";
+    readonly insensitive: "insensitive";
 };
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
 export declare const NullsOrder: {
-    readonly first: 'first';
-    readonly last: 'last';
+    readonly first: "first";
+    readonly last: "last";
 };
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 /**

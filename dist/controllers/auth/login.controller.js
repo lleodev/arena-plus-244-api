@@ -20,14 +20,14 @@ export async function LoginController(req, res) {
         });
         res.cookie("access_token", user.access_token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
             sameSite: "lax",
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/"
         });
         res.cookie("refresh_token", user.refresh_token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
             sameSite: "lax",
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/api/v1/auth"

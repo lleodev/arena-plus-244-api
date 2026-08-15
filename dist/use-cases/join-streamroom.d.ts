@@ -5,14 +5,14 @@ export declare class JoinStreamRoom {
     execute(userid: string, roomname: string): Promise<{
         access_token: string;
         room: {
+            userid: string;
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
             roomName: string;
             title: string;
             desc: string;
             status: string;
-            createdAt: Date;
-            updatedAt: Date;
-            userid: string;
         };
         isowner: boolean;
     }>;

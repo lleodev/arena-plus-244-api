@@ -20,14 +20,14 @@ export async function ReisterController(req, res) {
         });
         res.cookie("access_token", user.accessToken, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
             sameSite: "lax",
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/"
         });
         res.cookie("refresh_token", user.refreshToken, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
             sameSite: "lax",
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/api/v1/auth"
