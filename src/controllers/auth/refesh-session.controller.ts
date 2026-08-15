@@ -26,7 +26,7 @@ export async function RefreshSessionController(req: Request, res: Response)
             httpOnly: true,
             secure: process.env.SECURE_COOCKIE === "production",
             sameSite: (process.env.SAME_ORIGIN as boolean | "lax" | "strict" | "none" | undefined),
-            maxAge: 30 * 24 * 60 * 60 * 1000
+            maxAge: 15 * 60 * 1000
         })
 
         return (res.status(200).json({ message: "Sessão renovada" }))
