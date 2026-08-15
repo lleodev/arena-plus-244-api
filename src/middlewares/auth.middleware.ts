@@ -7,6 +7,7 @@ export async function AuthMiddleware(req: Request, res: Response, next: NextFunc
 
     const accessToken = req.cookies.access_token
 
+    console.log("MIDD: ", accessToken)
     if (!accessToken)
         return res.status(401).json({ message: "Não autenticado" })
 

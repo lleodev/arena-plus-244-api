@@ -19,12 +19,16 @@ export async function LogoutController (req: Request, res: Response) {
         res.clearCookie("refresh_token", {
             path: "/api/v1/auth"
         })
-
+        console.log("RESPONSE: ")
         return res.status(204).send()
     } catch (error) {
         
+        
         if (error instanceof Error)
+        {
+            console.log(error.message)
             return res.status(400).json({ message: error.message })
+        }
         return res.status(500).json({message : "Error interno do servidor"})
     }
 

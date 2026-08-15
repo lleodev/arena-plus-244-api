@@ -40,7 +40,8 @@ export async function LoginController(req: Request, res: Response)
             maxAge: 30 * 24 * 60 * 60 * 1000,
             path: "/api/v1/auth"
         })
-
+        
+        console.log("RESPONSE: Logado com sucesso")
         res.status(201).json(user.user)
     }
     catch(error: any) {

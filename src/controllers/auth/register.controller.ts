@@ -41,6 +41,7 @@ export async function ReisterController(req: Request, res: Response) {
             path: "/api/v1/auth"
         })
     
+        console.log("RESPONSE: Conta criada com sucesso")
         return res.status(200).json(user.user)
         
     } catch (error: any) {

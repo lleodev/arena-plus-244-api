@@ -16,6 +16,7 @@ export async function JoinStreamRoomController(req: Request, res: Response) {
         const livekittoken = new JoinStreamRoom(livekitServ)
 
         const roominfo = await livekittoken.execute(userid, id as string)
+        console.log("RESPONSE: Entrou na transmissão")
 
         return res.status(201).json (
             {
@@ -25,7 +26,7 @@ export async function JoinStreamRoomController(req: Request, res: Response) {
     } catch (error) {
         if (error instanceof Error)
         {
-            console.log(error)
+            console.error("ERROR: ", error)
             return res.status(400).json({ message: error.message })
         }
         return res.status(500).json({ message: "Erro interno do servidor" })

@@ -14,6 +14,7 @@ export async function CreateStreamRoomController(req: Request, res: Response) {
     
         console.log(req.body)
         const result = await livekittoken.execute(userid, { desc, title })
+        console.log("RESPONSE: Transmissão criada com sucesso")
         
         return res.status(201).json({
             ...result
@@ -22,7 +23,7 @@ export async function CreateStreamRoomController(req: Request, res: Response) {
     } catch(error) {
         if (error instanceof Error)
         {
-            console.log(error)
+            console.log(error.message)
             return res.status(400).json({ message : error.message })
         }
         return res.status(500).json({ message : "Erro interno do servidor" })
