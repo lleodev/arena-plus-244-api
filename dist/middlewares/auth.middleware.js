@@ -3,6 +3,7 @@ import { JWTTokenService } from "../cryptography/jwt-token-service.js";
 import { PrismaUserRepository } from "../repositories/prisma-user.repository.js";
 export async function AuthMiddleware(req, res, next) {
     const accessToken = req.cookies.access_token;
+    console.log("MIDD: ", accessToken);
     if (!accessToken)
         return res.status(401).json({ message: "Não autenticado" });
     const jwtserv = new JWTTokenService();
