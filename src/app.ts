@@ -15,7 +15,10 @@ app.use(express.json())
 app.use(coockieParser())
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL!,
+  origin: [
+    "https://arena-plus-244-web.vercel.app",
+    "http://localhost:3000"
+  ],
   credentials: true
 }))
 
