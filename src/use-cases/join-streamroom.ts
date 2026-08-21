@@ -15,8 +15,7 @@ export class JoinStreamRoom {
         if (!room)
             throw new Error("Sala não encontrada")
 
-        console.log("Comparing: ", userid," == ", room.userid)
-        const livekitRoomToken = await this.livekitserv.createLiveKitToken(userid, room.roomName, userid == room.userid)
+        const livekitRoomToken = await this.livekitserv.createLiveKitToken(userid, room.roomName, true)
 
         return (
             {
